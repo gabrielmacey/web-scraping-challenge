@@ -77,6 +77,8 @@ def scraped_planet():
     browser = Browser('chrome', **executable_path, headless=False)
     hemi_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(hemi_url)
+    mars_hemi_html = browser.html
+    mars_soup = bs(mars_hemi_html, 'html.parser')
     mars_hemi = mars_soup.find('div', class_='collapsible results')
     mars_hemispheres = mars_hemi.find_all('a')
 
@@ -100,16 +102,14 @@ def scraped_planet():
             browser.back()
 
     # Putting info into dict
-    planet_mars = {}
-    planet_mars['news_titles'] = news_titles
-    planet_mars['news_paragraph'] = news_paragraph
-    planet_mars['fimage'] = relative_image
-    planet_mars['mars_table'] = mars_table
-    planet_mars['hemispheres_images'] = imgs_url
+    marspage = {}
+    marspage['news_titles'] = news_titles
+    marspage['news_paragraph'] = nparagraph
+    marspage['fimage'] = featured_image_url
+    marspage['mars_table'] = mars_table
+    marspage['hemispheres_images'] = imgs_url
 
-    browser.quit()
-
-    return planet_mars
+    return marspage
 
 if __name__ == "__main__":
     scraped_planet()
