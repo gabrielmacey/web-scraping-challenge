@@ -52,15 +52,15 @@ def scraped_planet():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
-    jpl_nasa_url = 'https://www.jpl.nasa.gov'
+    nasa_url = 'https://www.jpl.nasa.gov'
     images_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(images_url)
     html = browser.html
     images_soup = bs(html, 'html.parser')
 
     # Retrieve featured image link
-    relative_image = images_soup.find_all('img')[3]["src"]
-    featured_image_url = jpl_nasa_url + relative_image
+    featured_image  = images_soup.find('article', class_="carousel_item")['style'].replace('background-image: url(','').replace(');', '')[1:-1]
+    featured_image_url = nasa_url + featured_image
 
     # Mars Facts
     facts_url = 'https://space-facts.com/mars/'
@@ -83,7 +83,7 @@ def scraped_planet():
     mars_hemispheres = mars_hemi.find_all('a')
 
 
-    imgs_url = []
+    hemispheres_images = []
     for x in mars_hemispheres:
         if x.h3:
             i_title = x.h3.text
@@ -98,16 +98,16 @@ def scraped_planet():
             mars_dict = {}
             mars_dict["Title"] = i_title
             mars_dict["Image_URL"] = i_image
-            imgs_url.append(mars_dict)
+            hemispheres_images.append(mars_dict)
             browser.back()
 
     # Putting info into dict
     marspage = {}
     marspage['news_titles'] = news_titles
-    marspage['news_paragraph'] = nparagraph
-    marspage['fimage'] = featured_image_url
+    marspage['n_paragraph'] = nparagraph
+    marspage['featured_image_urlimage'] = featured_image_url
     marspage['mars_table'] = mars_table
-    marspage['hemispheres_images'] = imgs_url
+    marspage['hemispheres_images'] = hemispheres_images
 
     return marspage
 
