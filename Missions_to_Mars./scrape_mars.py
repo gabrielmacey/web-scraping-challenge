@@ -102,14 +102,14 @@ def scraped_planet():
             browser.back()
 
     # Putting info into dict
-    marspage = {}
-    marspage['news_titles'] = news_titles
-    marspage['n_paragraph'] = nparagraph
-    marspage['featured_image_urlimage'] = featured_image_url
-    marspage['mars_table'] = mars_table
-    marspage['hemispheres_images'] = hemispheres_images
+    mars = {}
+    mars['newstitles_cleaned'] = newstitles_cleaned
+    mars['nparagraph'] = nparagraph
+    mars['featured_image_url'] = featured_image_url
+    mars['mars_table'] = mars_table
+    mars['hemispheres_images'] = hemispheres_images
 
-    return marspage
+    return mars
 
 if __name__ == "__main__":
     scraped_planet()

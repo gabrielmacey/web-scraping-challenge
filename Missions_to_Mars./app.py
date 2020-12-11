@@ -13,13 +13,13 @@ mongo = PyMongo(app)
 # Set route
 @app.route('/')
 def index():
-    marspage = mongo.db.marspages.find_one()
-    return render_template("index.html", marspage=marspage)
+    mars = mongo.db.mars.find_one()
+    return render_template("index.html", mars=mars)
 
 
 @app.route('/scrape')
 def scraper():
-    marspages = mongo.db.marspages
+    mars = mongo.db.mars
     mars_stuff = scrape_mars.scraped_planet()
     marspages.update({}, mars_stuff, upsert=True)
     print(mars)
