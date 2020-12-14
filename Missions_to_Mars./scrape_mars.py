@@ -11,32 +11,12 @@ def scrape():
 
     # Create BeautifulSoup object; parse with 'html.parser'
     soup = bs(response.text, 'html.parser')
-    results = soup.find_all('div', class_="content_title")
-
-    # Blank list
-    news_titles = []
-    # Loop over elements
-    for result in results:
-        if (result.a):
-            if (result.a.text):
-                news_titles.append(result)
-
-    newstitles_cleaned = []
-    # Print only headlines for first 5
-    for x in range(1):
-        var=news_titles[x].text
-        newvar = var.strip('\n\n')
-        newstitles_cleaned.append(newvar)
+    results = soup.find_all('div', class_="content_title")[0].text
+    newstitles_cleaned = results.strip('\n\n')
 
     #Find paragraph below title
-    paragraphs = soup.find_all('div', class_="rollover_description_inner")
-
-    nparagraph = []
-    # Print only paragraphs for first 5
-    for x in range(1):
-        var=paragraphs[x].text
-        newvar = var.strip('\n\n')
-        nparagraph.append(newvar)
+    paragraphs = soup.find_all('div', class_="rollover_description_inner")[0].text
+    nparagraph = paragraphs.strip('\n\n')
 
     # JPL Mars Space Images
     executable_path = {'executable_path': ChromeDriverManager().install()}

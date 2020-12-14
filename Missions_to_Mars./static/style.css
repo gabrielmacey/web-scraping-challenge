@@ -1,5 +1,5 @@
 h1 {/* color:red; */
-    color: #ff1a1a;
+    color: red;
     font-weight: bold;
 }
 
@@ -14,25 +14,33 @@ h3 { /* color:orange; */
 }
 
 h4 { /* color:white; */
-    color: #ffffff;
+    color: ##ff9999;
     font-weight: bold;
 }
 
+h5 {
+    color: #ffffff
+    font-weight: bold;
+}
 body {
     width: 100%;
     min-height: 100%;
     background-color: #000000;
 }
 
+.border table-striped {
+    color: #ffffff
+    text
+}
 .btn-primary {
-    color: #ff1a1a;
-    background-color: #ff9966;
+    color: black;
+    background-color: yellow;
     border-color: #002a57;
     }
 .jumbotron {
     padding: 5rem 4rem;
     margin-bottom: 5rem;
-    background-color: ##660000;
+    background-color: #333333;
     border-radius: .5rem;
     }
 

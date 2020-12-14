@@ -6,7 +6,7 @@
     <title>Mission to Mars</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel = "stylesheet" href = "../static/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -27,9 +27,9 @@
         </div>
         <div class="row">
             <div class="col col-12">
-                <h3>Latest Mars News</h3>
-                <h4>{{mars.newstitles_cleaned}}</h4>
-                {{mars.nparagraph}}
+                <h2>Latest Mars News</h2>
+                <h3>{{mars.newstitles_cleaned}}</h3>
+                <h4>{{mars.nparagraph}}</h4>
             </div>
         </div>
         <br>
@@ -41,7 +41,7 @@
             <div class="col-md-4">
               <div class="border table-striped">
                 <h2>Mars Facts</h2>
-                {{ mars.mars_table | safe }}
+                <h4>{{ mars.mars_table | safe }}</h4>
               </div>
             </div>
         </div>
@@ -55,8 +55,11 @@
         <div class="row">
             {% for image_url in mars.hemispheres_images %}
             <div class="col col-6">
+              <div class="caption" align='center'>
+                  <h3>{{image_url.Title}}</h3>
                 <div class="boxmargin">
                     <img src={{image_url.Image_URL}} alt={{image_url.Image_URL}} style="max-width:100%; height:auto;" />
+                </div>
                 </div>
             </div>
             {% endfor %}
