@@ -4,7 +4,7 @@ from splinter import Browser
 import pandas as pd
 from webdriver_manager.chrome import ChromeDriverManager
 
-def scraped_planet():
+def scrape():
     # URL to be scraped
     url = 'https://mars.nasa.gov/news/'
     response = requests.get(url)
@@ -23,7 +23,7 @@ def scraped_planet():
 
     newstitles_cleaned = []
     # Print only headlines for first 5
-    for x in range(5):
+    for x in range(1):
         var=news_titles[x].text
         newvar = var.strip('\n\n')
         newstitles_cleaned.append(newvar)
@@ -33,7 +33,7 @@ def scraped_planet():
 
     nparagraph = []
     # Print only paragraphs for first 5
-    for x in range(5):
+    for x in range(1):
         var=paragraphs[x].text
         newvar = var.strip('\n\n')
         nparagraph.append(newvar)
@@ -102,14 +102,12 @@ def scraped_planet():
             browser.back()
 
     # Putting info into dict
-    mars = {}
-    mars['newstitles_cleaned'] = newstitles_cleaned
-    mars['nparagraph'] = nparagraph
-    mars['featured_image_url'] = featured_image_url
-    mars['mars_table'] = mars_table
-    mars['hemispheres_images'] = hemispheres_images
+    mars = {
+    'newstitles_cleaned': newstitles_cleaned,
+    'nparagraph': nparagraph,
+    'featured_image_url' : featured_image_url,
+    'mars_table': mars_table,
+    'hemispheres_images': hemispheres_images
+    }
 
     return mars
-
-if __name__ == "__main__":
-    scraped_planet()
